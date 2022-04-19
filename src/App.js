@@ -1,25 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
-function App() {
+export default function Timer() {
+  const [time, setTime] = useState(0);
+  const [name, setName] = useState('');
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setTime((prev) => prev + 1)
+    }, 1000);
+    return () => { clearInterval(intervalId) };
+
+  }, []);
+  const handleChange = ({ target }) => {
+    setName(target.value);
+  }
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <input value={name} onChange={handleChange} />
+      <h1>Time: {time}</h1>
+      <h2>{name}</h2>
+    </>
   );
 }
 
-export default App;
+
