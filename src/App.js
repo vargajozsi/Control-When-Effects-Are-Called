@@ -19,7 +19,7 @@ export default function Timer() {
     <>
       <input value={name} onChange={handleChange} />
       <h1>Time: {time}</h1>
-      <h2>{name}</h2>
+      <h2>{name}</h2> /* optional */
     </>
   );
 }
